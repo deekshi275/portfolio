@@ -82,7 +82,7 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // ----- Contact form validation -----
+  // ----- Contact form validation & EmailJS integration -----
   const form = document.getElementById('contact-form');
   if (form) {
     const nameInput = form.querySelector('#name');
@@ -91,6 +91,7 @@
     const nameError = form.querySelector('#name-error');
     const emailError = form.querySelector('#email-error');
     const messageError = form.querySelector('#message-error');
+    const submitButton = form.querySelector('button[type="submit"]');
 
     function showError(input, errorEl, message) {
       input.classList.add('error');
@@ -104,6 +105,31 @@
 
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function showSuccess() {
+      const successMsg = document.createElement('div');
+      successMsg.style.cssText = 'background: var(--accent); color: var(--bg); padding: 1rem; border-radius: var(--radius); margin-top: 1rem; text-align: center; font-family: var(--font-mono);';
+      successMsg.textContent = '✓ Message sent successfully!';
+      form.appendChild(successMsg);
+      setTimeout(function () {
+        successMsg.remove();
+      }, 5000);
+    }
+
+    function showFailure(message) {
+      const errorMsg = document.createElement('div');
+      errorMsg.style.cssText = 'background: #f87171; color: white; padding: 1rem; border-radius: var(--radius); margin-top: 1rem; text-align: center; font-family: var(--font-mono);';
+      errorMsg.textContent = '✗ Failed to send: ' + (message || 'Please try again.');
+      form.appendChild(errorMsg);
+      setTimeout(function () {
+        errorMsg.remove();
+      }, 5000);
+    }
+
+    // Initialize EmailJS
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init('ZdD0cqMofcSQyZMrz');
     }
 
     form.addEventListener('submit', function (e) {
@@ -133,9 +159,31 @@
       }
 
       if (valid) {
-        // Form is valid - in production you would send to backend or mailto
-        alert('Thank you! Your message has been sent. (Replace this with real form submission.)');
-        form.reset();
+        // Disable submit button during sending
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        // Check if EmailJS is loaded
+        if (typeof emailjs === 'undefined') {
+          showFailure('EmailJS library not loaded. Please refresh the page.');
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send Message';
+          return;
+        }
+
+        // Send email using EmailJS
+        emailjs.sendForm('service_i2humlj', 'template_ndfha3t', form)
+          .then(function () {
+            showSuccess();
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message';
+          }, function (error) {
+            console.error('EmailJS error:', error);
+            showFailure(error.text || 'An error occurred. Please check your EmailJS configuration.');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message';
+          });
       }
     });
 
