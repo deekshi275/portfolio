@@ -1,4 +1,4 @@
-# Personal Portfolio — 
+# Personal Portfolio — DEEKSHITH BH
 
 A recruiter-friendly portfolio for a CS fresher targeting software developer roles. Built with **HTML**, **CSS**, and **JavaScript** (no frameworks).
 
