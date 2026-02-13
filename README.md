@@ -99,4 +99,3 @@ portfolio/
 - **Theme:** Use the “Theme of the Project” section above to explain the terminal/hacker theme in 1–2 minutes.
 - **Why vanilla?** You can say you wanted to show core HTML/CSS/JS skills and keep the site fast and dependency-free.
 - **Challenges:** You can mention responsive layout, the terminal-style hero layout, or the photo lightbox as small challenges you solved.
-..........
