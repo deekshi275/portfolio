@@ -82,6 +82,39 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // ----- Education section reveal animation (IntersectionObserver) -----
+  const eduItems = document.querySelectorAll('.education-item');
+  if ('IntersectionObserver' in window && eduItems.length) {
+    const obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          // optionally unobserve so animation runs once
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+    eduItems.forEach(function (el) { obs.observe(el); });
+    // also run an initial pass in case some items are already visible
+    function initialReveal() {
+      eduItems.forEach(function (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('in-view');
+          try { obs.unobserve(el); } catch (e) {}
+        }
+      });
+    }
+    // run after a tick to ensure layout is settled
+    setTimeout(initialReveal, 60);
+    window.addEventListener('resize', initialReveal);
+    window.addEventListener('orientationchange', initialReveal);
+  } else if (eduItems.length) {
+    // fallback - show all
+    eduItems.forEach(function (el) { el.classList.add('in-view'); });
+  }
+
   // ----- Contact form validation & EmailJS integration -----
   const form = document.getElementById('contact-form');
   if (form) {

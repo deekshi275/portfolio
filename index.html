@@ -23,8 +23,9 @@
   <!-- Sticky Navigation -->
   <header class="header" role="banner">
     <nav class="nav container" aria-label="Main navigation">
-      <a href="#home" class="nav-logo"><span class="nav-prompt">root@portfolio</span><span
-          class="nav-cursor">:~#</span></a>
+      <a href="#home" class="nav-logo">
+        <img src="logo.svg" alt="Portfolio logo" class="site-logo" width="40" height="40">
+      </a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span>
         <span></span>
@@ -85,24 +86,26 @@
         <h2 id="about-heading" class="section-title"><span class="section-prefix">$ cat</span> about_me.txt</h2>
         <div class="about-grid">
           <div class="about-intro">
-            <p>I am a Computer Science graduate with a strong foundation in programming and problem-solving. I enjoy
-              turning ideas into working software and am focused on writing maintainable code.</p>
-            <p>My academic projects and self-learning have given me hands-on experience with Python, web development,
-              and databases. I am looking for an opportunity where I can grow as a developer and add value from day one.
-            </p>
+            <p>I am a Computer Science graduate and software developer specializing in Python-backed web
+              applications and reliable backend systems. I focus on writing clean, maintainable code and delivering
+              production-ready features that solve real user problems.</p>
+            <p>My experience includes building RESTful APIs, small full-stack prototypes, and data-processing
+              utilities. I follow best practices such as automated testing, clear documentation, and collaborative
+              code review.</p>
           </div>
           <div class="about-details">
-            <h3>Education Summary</h3>
-            <p>B.Tech / B.Sc in Computer Science with coursework in Data Structures, Algorithms, DBMS, and Web
-              Technologies.</p>
-            <h3>Career Goal</h3>
-            <p>To join a product or tech team as a Software Developer, contribute to meaningful projects, and grow into
-              a reliable, skilled engineer.</p>
+            <h3>Education</h3>
+            <p>BE in Computer Science — GECM Hassan</p>
+            <h3>Technical Summary</h3>
+            <p>Python • Flask / Django • REST APIs • SQL • HTML / CSS / JavaScript • Git • Firebase</p>
+            <h3>Career Objective</h3>
+            <p>Seeking an entry-level software engineering role where I can contribute to product development,
+              learn from experienced engineers, and grow through impactful work.</p>
             <h3>Strengths</h3>
             <ul class="strengths-list">
-              <li>Quick learner — I pick up new tools and concepts quickly.</li>
-              <li>Problem solving — I break down problems and find practical solutions.</li>
-              <li>Team player — I communicate clearly and work well in groups.</li>
+              <li>Strong fundamentals in data structures, algorithms, and system design basics.</li>
+              <li>Delivers readable, tested code and values maintainability.</li>
+              <li>Collaborative team member with clear communication and a growth mindset.</li>
             </ul>
           </div>
         </div>
@@ -148,61 +151,66 @@
       <div class="container">
         <h2 id="projects-heading" class="section-title"><span class="section-prefix">$ ls</span> ./projects</h2>
         <div class="projects-grid">
-          <!-- Project 1: Attendance Management System -->
+          <!-- Project 1: Car Pool / Drive Sharing App -->
           <article class="project-card">
-            <h3 class="project-title">Attendance Management System</h3>
-            <p class="project-problem">Manual attendance in classrooms is time-consuming and prone to errors. Teachers
-              need a simple way to mark and track student attendance digitally.</p>
-            <p class="project-tech"><strong>Technologies:</strong> Python, SQLite/MySQL, Tkinter or Flask (web),
-              HTML/CSS</p>
+            <div class="project-icon" aria-hidden="true">
+              <img src="icons/car.svg" alt="Car icon" width="48" height="48">
+            </div>
+            <h3 class="project-title">Car Pool — Drive Sharing App</h3>
+            <p class="project-problem">A platform to create and join shared rides, reduce commuting costs, and
+              optimise vehicle occupancy for city routes.</p>
+            <p class="project-tech"><strong>Technologies:</strong> HTML, CSS, JavaScript, Node.js, MongoDB</p>
             <ul class="project-features">
-              <li>Student and teacher login with role-based access</li>
-              <li>Mark attendance by date and subject</li>
-              <li>View and export attendance reports</li>
-              <li>Admin panel to manage users and courses</li>
+              <li>User registration, login, and profile management</li>
+              <li>Create and search rides by origin, destination, date and time</li>
+              <li>Join/leave ride flow, seat management, and simple messaging between driver & passengers</li>
+              <li>Responsive front-end with server APIs and data persisted in MongoDB</li>
             </ul>
             <div class="project-links">
-              <a href="https://github.com/yourusername/attendance-system" target="_blank"
-                rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Live Demo</a>
             </div>
           </article>
 
-          <!-- Project 2: Student Result Management System -->
+          <!-- Project 2: Python-based Attendance Management System -->
           <article class="project-card">
-            <h3 class="project-title">Student Result Management System</h3>
-            <p class="project-problem">Institutes need a centralized system to store, update, and retrieve student marks
-              and generate report cards without manual paperwork.</p>
-            <p class="project-tech"><strong>Technologies:</strong> Python, Flask/Django, SQL, HTML/CSS/JS</p>
+            <div class="project-icon" aria-hidden="true">
+              <img src="icons/python.svg" alt="Python icon" width="48" height="48">
+            </div>
+            <h3 class="project-title">Attendance Management System (Python)</h3>
+            <p class="project-problem">Digital attendance tracking for classrooms or small organizations with
+              import/export capabilities and summary reports.</p>
+            <p class="project-tech"><strong>Technologies:</strong> Python, CSV/Excel, SQLite/MySQL, Flask (optional)</p>
             <ul class="project-features">
-              <li>Add, edit, and delete student and subject data</li>
-              <li>Calculate grades and CGPA automatically</li>
-              <li>Generate PDF or printable result sheets</li>
-              <li>Search and filter by roll number or name</li>
+              <li>Mark daily attendance and store records in a database</li>
+              <li>Import/export using CSV or Excel for integration with school records</li>
+              <li>Generate attendance reports and PDF/CSV exports</li>
+              <li>Optional web UI using Flask for easy deployment and user access</li>
             </ul>
             <div class="project-links">
-              <a href="https://github.com/yourusername/result-management" target="_blank"
-                rel="noopener noreferrer">GitHub</a>
-              <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Live Demo</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Demo / Screenshots</a>
             </div>
           </article>
 
-          <!-- Project 3: Expense Tracker -->
+          <!-- Project 3: Weather Broadcast Management (Frontend) -->
           <article class="project-card">
-            <h3 class="project-title">Expense Tracker</h3>
-            <p class="project-problem">People struggle to track daily spending. A simple app can help users log
-              expenses, categorize them, and view summaries by period.</p>
-            <p class="project-tech"><strong>Technologies:</strong> Python, SQLite, Tkinter or Flask, Chart.js (optional)
-            </p>
+            <div class="project-icon" aria-hidden="true">
+              <img src="icons/weather.svg" alt="Weather icon" width="48" height="48">
+            </div>
+            <h3 class="project-title">Weather Broadcast Management</h3>
+            <p class="project-problem">A frontend application to display weather forecasts and schedule
+              broadcast-style updates for users or display screens.</p>
+            <p class="project-tech"><strong>Technologies:</strong> HTML, CSS, JavaScript, Public Weather APIs (e.g.
+              OpenWeatherMap), optional Chart.js</p>
             <ul class="project-features">
-              <li>Add income and expense with category and date</li>
-              <li>View daily, monthly, and yearly summaries</li>
-              <li>Basic charts or tables for spending breakdown</li>
-              <li>Export data to CSV</li>
+              <li>Current weather and multi-day forecast UI with clear visual indicators</li>
+              <li>Schedule automatic broadcast messages/alerts based on conditions</li>
+              <li>Responsive dashboard suitable for kiosks or mobile devices</li>
+              <li>Integration with third-party weather APIs for reliable data</li>
             </ul>
             <div class="project-links">
-              <a href="https://github.com/yourusername/expense-tracker" target="_blank"
-                rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Live Demo</a>
             </div>
           </article>
@@ -216,19 +224,19 @@
         <h2 id="education-heading" class="section-title"><span class="section-prefix">$ cat</span> education.log</h2>
         <div class="education-timeline">
           <article class="education-item">
-            <div class="education-year">2020 – 2024</div>
+            <div class="education-year">2023 – 2026</div>
             <div class="education-details">
-              <h3>B.Tech / B.Sc in Computer Science</h3>
-              <p class="education-institute">Your College Name, City</p>
-              <p class="education-grade">CGPA: 8.5 / 10 (or Percentage: 85%)</p>
+              <h3>BE in Computer Science</h3>
+              <p class="education-institute">GECM Hassan, Hassan</p>
+              <p class="education-grade">CGPA: 8.2 / 10</p>
             </div>
           </article>
           <article class="education-item">
-            <div class="education-year">2018 – 2020</div>
+            <div class="education-year">2020 – 2023</div>
             <div class="education-details">
-              <h3>Higher Secondary (12th)</h3>
-              <p class="education-institute">Your School Name, City</p>
-              <p class="education-grade">Percentage: 90%</p>
+              <h3>Diploma in Computer Science</h3>
+              <p class="education-institute">Government Polytechnic, Turuvekere</p>
+              <p class="education-grade">CGPA: 7.76 / 10</p>
             </div>
           </article>
         </div>
@@ -279,8 +287,8 @@
         <h2 id="contact-heading" class="section-title"><span class="section-prefix">$</span> contact --connect</h2>
         <div class="contact-wrapper">
           <div class="contact-info">
-            <p><strong>Email</strong><br><a href="mailto:your.email@example.com">your.email@example.com</a></p>
-            <p><strong>Phone</strong><br><a href="tel:+919876543210">+91 98765 43210</a></p>
+            <p><strong>Email</strong><br><a href="mailto:deekshithbh04@gmail.com">deekshithbh04@gmail.com</a></p>
+            <p><strong>Phone</strong><br><a href="tel:+919876543210">+91 8867290934</a></p>
             <p><strong>Location</strong><br>City, State, Country</p>
             <div class="social-links">
               <a href="https://www.linkedin.com/in/deekshith-bh/" target="_blank" rel="noopener noreferrer"
