@@ -331,15 +331,17 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
   <script>
     (function () {
-      emailjs.init("ZdD0cqMofcSQyZMrz");
+      emailjs.init({
+        publicKey: "ZdD0cqMofcSQyZMrz",
+      });
     })();
 
     document.getElementById("contact-form")
       .addEventListener("submit", function (e) {
-
         e.preventDefault();
 
         emailjs.sendForm(
@@ -349,9 +351,9 @@
         ).then(function () {
           alert("Message Sent Successfully!");
         }, function (error) {
-          alert("Failed to send");
+          console.error("EmailJS error:", error);
+          alert("Failed to send. Please try again later.");
         });
-
       });
   </script>
 </body>
