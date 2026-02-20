@@ -5,6 +5,114 @@
 (function () {
   'use strict';
 
+  // ----- Welcome Screen Animation -----
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const welcomeTypingEl = document.getElementById('welcome-typing-text');
+  const welcomeParticlesEl = document.getElementById('welcome-particles');
+  const body = document.body;
+
+  function typeWelcome(word, el, speed, callback) {
+    if (!el) { if (callback) callback(); return; }
+    var i = 0;
+    el.textContent = '';
+    function type() {
+      if (i < word.length) {
+        el.textContent += word[i];
+        i++;
+        setTimeout(type, speed);
+      } else if (callback) {
+        setTimeout(callback, 200);
+      }
+    }
+    setTimeout(type, 400);
+  }
+
+  function createParticles(container, count) {
+    if (!container) return;
+    for (var i = 0; i < count; i++) {
+      var p = document.createElement('span');
+      p.className = 'welcome-particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDelay = Math.random() * 15 + 's';
+      p.style.animationDuration = (12 + Math.random() * 8) + 's';
+      container.appendChild(p);
+    }
+  }
+
+  function revealSectionsInView() {
+    document.querySelectorAll('.reveal-section').forEach(function(section) {
+      var rect = section.getBoundingClientRect();
+      var threshold = window.innerHeight * 0.15;
+      if (rect.top < window.innerHeight - threshold) {
+        section.classList.add('revealed');
+      }
+    });
+  }
+
+  function initWelcomeScreen() {
+    if (!welcomeScreen) return;
+
+    body.classList.add('welcome-active');
+    createParticles(welcomeParticlesEl, 22);
+
+    typeWelcome('Welcome', welcomeTypingEl, 90, function() {
+      // optional: cursor blink stays on
+    });
+
+    function hideWelcome() {
+      welcomeScreen.classList.add('hidden');
+      body.classList.remove('welcome-active');
+      revealSectionsInView();
+      setTimeout(function() {
+        if (welcomeScreen && welcomeScreen.parentNode) {
+          welcomeScreen.style.display = 'none';
+        }
+      }, 1000);
+    }
+
+    setTimeout(hideWelcome, 4500);
+
+    var skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+      skipLink.addEventListener('click', function() {
+        hideWelcome();
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWelcomeScreen);
+  } else {
+    initWelcomeScreen();
+  }
+
+  // ----- Scroll progress bar -----
+  var scrollProgress = document.getElementById('scroll-progress');
+  if (scrollProgress) {
+    window.addEventListener('scroll', function() {
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var scrolled = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      scrollProgress.style.width = scrolled + '%';
+    }, { passive: true });
+  }
+
+  // ----- Scroll reveal (IntersectionObserver) -----
+  var revealSections = document.querySelectorAll('.reveal-section');
+  if ('IntersectionObserver' in window && revealSections.length) {
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+    revealSections.forEach(function(el) { revealObs.observe(el); });
+    window.addEventListener('scroll', function() { revealSectionsInView(); }, { passive: true });
+  } else {
+    revealSections.forEach(function(el) { el.classList.add('revealed'); });
+  }
+
   // ----- Sticky nav & mobile menu -----
   const header = document.querySelector('.header');
   const navToggle = document.querySelector('.nav-toggle');
