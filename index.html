@@ -1,27 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal portfolio of a Computer Science graduate - Python Developer, Software Engineer. Projects, skills, education, and resume.">
+  <meta name="description"
+    content="Personal portfolio of a Computer Science graduate - Python Developer, Software Engineer. Projects, skills, education, and resume.">
   <meta name="keywords" content="Python Developer, Software Engineer, Fresher, Portfolio, Web Developer">
   <title>Deekshith BH | Python Developer & Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div id="root"></div>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="module" src="/src/main.jsx"></script>
-  <script>
-    (function () {
-      if (typeof emailjs !== 'undefined') {
-        emailjs.init({
-          publicKey: "ZdD0cqMofcSQyZMrz",
-        });
-      }
-    })();
-  </script>
+  <!-- Welcome Screen Overlay -->
+  <div id="welcome-screen" class="welcome-screen">
+    <div class="welcome-bg">
+      <div class="welcome-gradient-orb welcome-orb-1"></div>
+      <div class="welcome-gradient-orb welcome-orb-2"></div>
+      <div class="welcome-gradient-orb welcome-orb-3"></div>
+      <div class="welcome-grid-overlay"></div>
+      <div class="welcome-particles" id="welcome-particles" aria-hidden="true"></div>
+    </div>
+    <div class="welcome-content">
+      <div class="welcome-terminal">
+        <div class="welcome-term-bar">
+          <span class="welcome-term-dots"></span>
+          <span class="welcome-term-title">system@portfolio — initializing</span>
+          <span class="welcome-term-status">● LOADING</span>
+        </div>
+        <div class="welcome-term-body">
+          <div class="welcome-text-container">
+            <p class="welcome-prompt">
+              <span class="welcome-prompt-symbol">$</span>
+              echo "
+              <span class="welcome-typing-wrap">
+                <span id="welcome-typing-text"></span>
+                <span class="welcome-cursor" aria-hidden="true">|</span>
+              </span>"
+            </p>
+            <h1 class="welcome-title" aria-hidden="true">
+              <span class="welcome-title-inner">Welcome</span>
+            </h1>
+            <p class="welcome-prompt welcome-prompt-2">
+              <span class="welcome-prompt-symbol">$</span>
+              cat ./portfolio.txt
+            </p>
+            <p class="welcome-subtitle">Initializing portfolio session...</p>
+            <div class="welcome-loader">
+              <div class="welcome-loader-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Sticky Navigation -->
+  <header class="header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#home" class="nav-logo">
+        <img src="logo.svg" alt="Portfolio logo" class="site-logo" width="40" height="40">
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="#home">./home</a></li>
+        <li><a href="#about">./about</a></li>
+        <li><a href="#skills">./skills</a></li>
+        <li><a href="#projects">./projects</a></li>
+        <li><a href="#education">./education</a></li>
+        <li><a href="#certifications">./certs</a></li>
+        <li><a href="#resume">./resume</a></li>
+        <li><a href="#contact">./contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scroll-progress" role="presentation" aria-hidden="true"></div>
+
+  <main id="main-content">
+    <!-- 1. HOME — Terminal session style -->
+    <section id="home" class="hero reveal-section" aria-labelledby="hero-heading">
+      <div class="hero-terminal container">
+        <div class="term-bar">
+          <span class="term-dots"></span>
+          <span class="term-title">root@deekshith — session_active</span>
+          <span class="term-status">● CONNECTED</span>
+        </div>
+        <div class="hero-content term-body">
+          <div class="hero-text term-output">
+            <p class="hero-prompt">
+              <span class="hero-prompt-symbol">$</span>
+              whoami
+            </p>
+            <h1 id="hero-heading" class="term-result">
+              Deekshith BH<span class="cursor" aria-hidden="true">|</span>
+            </h1>
+            <p class="hero-meta">
+              <span class="term-label">ROLE:</span>
+              Python Full Stack Developer | Software Engineer | Fresher
+            </p>
+            <p class="hero-prompt">
+              <span class="hero-prompt-symbol">$</span>
+              cat ./summary.txt
+            </p>
+            <p class="hero-summary">
+              Building clean, practical solutions with Python and web technologies. Eager to
+              contribute to real-world software projects.
+            </p>
+            <p class="hero-prompt">
+              <span class="hero-prompt-symbol">$</span>
+              run --action
+            </p>
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn-primary">./view_projects</a>
+              <a target="_blank"
+                href="https://drive.google.com/file/d/1A3ea_zIb7aEYEXYY_G6S0yJfO52kCiXN/view?usp=drivesdk"
+                class="btn btn-secondary">./download_resume</a>
+            </div>
+          </div>
+          <div class="hero-image-wrap term-pane" aria-hidden="true">
+            <div class="term-pane-bar">[ IDENTITY — click to view ]</div>
+            <button type="button" class="hero-avatar-btn" aria-label="View full photo">
+              <div class="hero-avatar">
+                <img src="dd.jpeg" alt="Deekshith BH - Professional photo" width="180" height="180" loading="lazy">
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT ME -->
+    <section id="about" class="section about reveal-section" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading" class="section-title">
+          <span class="section-prefix">$ cat</span> about_me.txt
+        </h2>
+        <div class="about-grid">
+          <div class="about-intro">
+            <p>
+              I am a Computer Science graduate and software developer specializing in Python-backed web
+              applications and reliable backend systems. I focus on writing clean, maintainable code and delivering
+              production-ready features that solve real user problems.
+            </p>
+            <p>
+              My experience includes building RESTful APIs, small full-stack prototypes, and data-processing
+              utilities. I follow best practices such as automated testing, clear documentation, and collaborative
+              code review.
+            </p>
+          </div>
+          <div class="about-details">
+            <h3>Education</h3>
+            <p>BE in Computer Science — GECM Hassan</p>
+            <h3>Technical Summary</h3>
+            <p>Python • Flask / Django • REST APIs • SQL • HTML / CSS / JavaScript • Git • Firebase</p>
+            <h3>Career Objective</h3>
+            <p>
+              Seeking an entry-level software engineering role where I can contribute to product development,
+              learn from experienced engineers, and grow through impactful work.
+            </p>
+            <h3>Strengths</h3>
+            <ul class="strengths-list">
+              <li>Strong fundamentals in data structures, algorithms, and system design basics.</li>
+              <li>Delivers readable, tested code and values maintainability.</li>
+              <li>Collaborative team member with clear communication and a growth mindset.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SKILLS -->
+    <section id="skills" class="section skills reveal-section" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="section-title">
+          <span class="section-prefix">$</span> skills --list
+        </h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3 class="skill-category-title">Technical Skills</h3>
+            <ul class="skill-list">
+              <li><span class="skill-icon" aria-hidden="true">🐍</span> Python</li>
+              <li><span class="skill-icon" aria-hidden="true">🌐</span> HTML, CSS, JavaScript</li>
+              <li><span class="skill-icon" aria-hidden="true">🗄️</span> SQL</li>
+              <li><span class="skill-icon" aria-hidden="true">📦</span> Git & GitHub</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Tools</h3>
+            <ul class="skill-list">
+              <li><span class="skill-icon" aria-hidden="true">💻</span> VS Code</li>
+              <li><span class="skill-icon" aria-hidden="true">📊</span> Excel</li>
+              <li><span class="skill-icon" aria-hidden="true">🐧</span> Linux basics</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Soft Skills</h3>
+            <ul class="skill-list">
+              <li><span class="skill-icon" aria-hidden="true">💬</span> Communication</li>
+              <li><span class="skill-icon" aria-hidden="true">⏱️</span> Time management</li>
+              <li><span class="skill-icon" aria-hidden="true">🔄</span> Adaptability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROJECTS -->
+    <section id="projects" class="section projects reveal-section" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 id="projects-heading" class="section-title">
+          <span class="section-prefix">$ ls</span> ./projects
+        </h2>
+        <div class="projects-grid">
+          <!-- Project 1: Car Pool / Drive Sharing App -->
+          <article class="project-card">
+            <div class="project-icon" aria-hidden="true">
+              <img src="icons/car.svg" alt="Car icon" width="48" height="48">
+            </div>
+            <h3 class="project-title">Car Pool — Drive Sharing App</h3>
+            <p class="project-problem">
+              A platform to create and join shared rides, reduce commuting costs, and
+              optimise vehicle occupancy for city routes.
+            </p>
+            <p class="project-tech">
+              <strong>Technologies:</strong> HTML, CSS, JavaScript, Node.js, MongoDB
+            </p>
+            <ul class="project-features">
+              <li>User registration, login, and profile management</li>
+              <li>Create and search rides by origin, destination, date and time</li>
+              <li>Join/leave ride flow, seat management, and simple messaging between driver & passengers</li>
+              <li>Responsive front-end with server APIs and data persisted in MongoDB</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Live Demo</a>
+            </div>
+          </article>
+
+          <!-- Project 2: Python-based Attendance Management System -->
+          <article class="project-card">
+            <div class="project-icon" aria-hidden="true">
+              <img src="icons/python.svg" alt="Python icon" width="48" height="48">
+            </div>
+            <h3 class="project-title">Attendance Management System (Python)</h3>
+            <p class="project-problem">
+              Digital attendance tracking for classrooms or small organizations with
+              import/export capabilities and summary reports.
+            </p>
+            <p class="project-tech">
+              <strong>Technologies:</strong> Python, CSV/Excel, SQLite/MySQL, Flask (optional)
+            </p>
+            <ul class="project-features">
+              <li>Mark daily attendance and store records in a database</li>
+              <li>Import/export using CSV or Excel for integration with school records</li>
+              <li>Generate attendance reports and PDF/CSV exports</li>
+              <li>Optional web UI using Flask for easy deployment and user access</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Demo / Screenshots</a>
+            </div>
+          </article>
+
+          <!-- Project 3: Weather Broadcast Management (Frontend) -->
+          <article class="project-card">
+            <div class="project-icon" aria-hidden="true">
+              <img src="icons/weather.svg" alt="Weather icon" width="48" height="48">
+            </div>
+            <h3 class="project-title">Weather Broadcast Management</h3>
+            <p class="project-problem">
+              A frontend application to display weather forecasts and schedule
+              broadcast-style updates for users or display screens.
+            </p>
+            <p class="project-tech">
+              <strong>Technologies:</strong> HTML, CSS, JavaScript, Public Weather APIs (e.g.
+              OpenWeatherMap), optional Chart.js
+            </p>
+            <ul class="project-features">
+              <li>Current weather and multi-day forecast UI with clear visual indicators</li>
+              <li>Schedule automatic broadcast messages/alerts based on conditions</li>
+              <li>Responsive dashboard suitable for kiosks or mobile devices</li>
+              <li>Integration with third-party weather APIs for reliable data</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="demo-link">Live Demo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EDUCATION -->
+    <section id="education" class="section education reveal-section" aria-labelledby="education-heading">
+      <div class="container">
+        <h2 id="education-heading" class="section-title">
+          <span class="section-prefix">$ cat</span> education.log
+        </h2>
+        <div class="education-timeline">
+          <article class="education-item">
+            <div class="education-year">2023 – 2026</div>
+            <div class="education-details">
+              <h3>BE in Computer Science</h3>
+              <p class="education-institute">GECM Hassan, Hassan</p>
+              <p class="education-grade">CGPA: 8.2 / 10</p>
+            </div>
+          </article>
+          <article class="education-item">
+            <div class="education-year">2020 – 2023</div>
+            <div class="education-details">
+              <h3>Diploma in Computer Science</h3>
+              <p class="education-institute">Government Polytechnic, Turuvekere</p>
+              <p class="education-grade">CGPA: 7.76 / 10</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CERTIFICATIONS -->
+    <section id="certifications" class="section certifications reveal-section" aria-labelledby="certifications-heading">
+      <div class="container">
+        <h2 id="certifications-heading" class="section-title">
+          <span class="section-prefix">$</span> certs --show
+        </h2>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h3>Internship Certificate</h3>
+            <p>Company/Startup Name — Role (e.g., Python Developer Intern)</p>
+            <p class="cert-meta">Duration: 2–3 months</p>
+          </div>
+          <div class="cert-card">
+            <h3>Online Course</h3>
+            <p>Python for Everybody / CS50 / Coursera / Udemy — Course name</p>
+            <p class="cert-meta">Platform: Coursera / edX / Udemy</p>
+          </div>
+          <div class="cert-card">
+            <h3>Coding Platform</h3>
+            <p>LeetCode / HackerRank / GeeksforGeeks — Problem solving & DSA</p>
+            <p class="cert-meta">Profile link or badge</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. RESUME -->
+    <section id="resume" class="section resume-section reveal-section" aria-labelledby="resume-heading">
+      <div class="container resume-container">
+        <h2 id="resume-heading" class="section-title">
+          <span class="section-prefix">$</span> download resume.pdf
+        </h2>
+        <p class="resume-desc">
+          Download my resume to view my full experience, education, and skills in one place.
+        </p>
+        <div class="resume-actions">
+          <a href="https://drive.google.com/file/d/1A3ea_zIb7aEYEXYY_G6S0yJfO52kCiXN/view?usp=drivesdk" target="_blank"
+            rel="noopener noreferrer" class="btn btn-resume">
+            Download Resume (PDF)
+          </a>
+          <a href="https://drive.google.com/file/d/1A3ea_zIb7aEYEXYY_G6S0yJfO52kCiXN/view?usp=drivesdk" target="_blank"
+            rel="noopener noreferrer" class="resume-open-link">
+            Open in new tab
+          </a>
+        </div>
+        <p class="resume-note">
+          Replace <code>resume.pdf</code> in the project folder with your actual resume file.
+        </p>
+      </div>
+    </section>
+
+    <!-- 8. CONTACT -->
+    <section id="contact" class="section contact reveal-section" aria-labelledby="contact-heading">
+      <div class="container">
+        <h2 id="contact-heading" class="section-title">
+          <span class="section-prefix">$</span> contact --connect
+        </h2>
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <p>
+              <strong>Email</strong><br>
+              <a href="mailto:deekshithbh04@gmail.com">deekshithbh04@gmail.com</a>
+            </p>
+            <p>
+              <strong>Phone</strong><br>
+              <a href="tel:+918867290934">+91 8867290934</a>
+            </p>
+            <p>
+              <strong>Location</strong><br>
+              City, State, Country
+            </p>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/deekshith-bh/" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn">LinkedIn</a>
+              <a href="https://github.com/deekshi275" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub">GitHub</a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
+            <span class="form-error" id="name-error" role="alert"></span>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com">
+            <span class="form-error" id="email-error" role="alert"></span>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="4" placeholder="Your message"></textarea>
+            <span class="form-error" id="message-error" role="alert"></span>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Deekshith BH. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Photo lightbox: click overlay or image to close -->
+  <div id="photo-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Full size photo" hidden>
+    <button type="button" class="lightbox-backdrop" aria-label="Close"></button>
+    <div class="lightbox-content">
+      <img src="dd.jpeg" alt="Deekshith BH - Full photo">
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
