@@ -333,4 +333,38 @@
     emailInput.addEventListener('input', function () { clearError(emailInput, emailError); });
     messageInput.addEventListener('input', function () { clearError(messageInput, messageError); });
   }
+
+  // ----- Career/Education timeline scroll animation -----
+  const careerSection = document.querySelector('.career-section');
+  const careerTimeline = document.querySelector('.career-timeline');
+  const careerDot = document.querySelector('.career-dot');
+
+  function updateCareerTimeline() {
+    if (!careerSection || !careerTimeline || !careerDot) return;
+
+    const rect = careerSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const sectionHeight = rect.height || 1;
+
+    // When the top of the section is at the bottom of the viewport => progress 0
+    // When the bottom of the section is at the top of the viewport => progress 1
+    const start = viewportHeight;          // rect.top value when section just enters from bottom
+    const end = -sectionHeight;            // rect.top value when section is just scrolled past top
+
+    let progress = (rect.top - start) / (end - start);
+    if (progress < 0) progress = 0;
+    if (progress > 1) progress = 1;
+
+    const heightPercent = progress * 100;  // 0% (top) to 100% (bottom)
+
+    careerTimeline.style.height = heightPercent + '%';
+    careerDot.style.top = heightPercent + '%';
+  }
+
+  // Update timeline on scroll and resize
+  window.addEventListener('scroll', updateCareerTimeline, { passive: true });
+  window.addEventListener('resize', updateCareerTimeline);
+
+  // Initial position after load
+  setTimeout(updateCareerTimeline, 100);
 })();
