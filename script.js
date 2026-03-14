@@ -368,3 +368,136 @@
   // Initial position after load
   setTimeout(updateCareerTimeline, 100);
 })();
+
+// ===== Projects Carousel Functionality =====
+(function() {
+  'use strict';
+
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsContainer = document.getElementById('carouselDots');
+  
+  if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+  const slides = Array.from(track.children);
+  let currentIndex = 0;
+  let isAnimating = false;
+  let autoPlayInterval;
+
+  // Create dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot';
+    if (index === 0) dot.classList.add('carousel-dot-active');
+    dot.setAttribute('aria-label', `Go to project ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsContainer.children);
+
+  function updateCarousel() {
+    // Update track position
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update dots
+    dots.forEach(dot => dot.classList.remove('carousel-dot-active'));
+    dots[currentIndex].classList.add('carousel-dot-active');
+  }
+
+  function goToSlide(index) {
+    if (isAnimating) return;
+    
+    isAnimating = true;
+    currentIndex = index;
+    updateCarousel();
+    
+    setTimeout(() => {
+      isAnimating = false;
+    }, 500);
+    
+    resetAutoPlay();
+  }
+
+  function goToNext() {
+    const newIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+    goToSlide(newIndex);
+  }
+
+  function goToPrev() {
+    const newIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+    goToSlide(newIndex);
+  }
+
+  function startAutoPlay() {
+    autoPlayInterval = setInterval(() => {
+      if (!isAnimating) {
+        goToNext();
+      }
+    }, 6000); // Change slide every 6 seconds
+  }
+
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    startAutoPlay();
+  }
+
+  // Event listeners
+  nextBtn.addEventListener('click', () => {
+    goToNext();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    goToPrev();
+  });
+
+  // Touch/swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe left - go to next
+        goToNext();
+      } else {
+        // Swipe right - go to prev
+        goToPrev();
+      }
+    }
+  }
+
+  // Pause autoplay on hover
+  track.parentElement.addEventListener('mouseenter', () => {
+    clearInterval(autoPlayInterval);
+  });
+
+  track.parentElement.addEventListener('mouseleave', () => {
+    startAutoPlay();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      goToPrev();
+    } else if (e.key === 'ArrowRight') {
+      goToNext();
+    }
+  });
+
+  // Start autoplay
+  startAutoPlay();
+})();
